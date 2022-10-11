@@ -2,9 +2,11 @@
     "name": "solicode/promotion-management",
     "autoload": {
         "psr-4": {
-            "Data\\": "Data/"
+            "Data\\": "Data/",
+            "BusinessLogic\\": "BusinessLogic/"
         },
         "files": [
+            "BusinessLogic/helpers.php",
             "Data/connection.php"
         ]
     },
@@ -13,6 +15,5 @@
             "name": "bilalbarina",
             "email": "bilal.barina.algo@gmail.com"
         }
-    ],
-    "require": {}
+    ]
 }

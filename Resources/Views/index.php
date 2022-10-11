@@ -1,14 +1,42 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
 
-namespace Data;
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="<?= asset('css/main.css') ?>">
+    <title> Promotions Management </title>
+</head>
 
-require __DIR__ . '/../../vendor/autoload.php';
+<body>
+    <div class="container max-w-xl shadow-md py-24 px-8 mt-10 border">
+        <div class="flex flex-row justify-between">
+            <button class="py-2 px-6 bg-blue-500 rounded-md text-white">
+                Ajouter promotion
+            </button>
+            <div>
+                <input class="py-2 px-4 border border-blue-500 w-48 rounded-md" placeholder="Chercher promotion">
+            </div>
+        </div>
 
-$promotionObject = new Promotion();
-$created = $promotionObject->create('test');
+        <ul id="promotions" class="mt-8 px-2">
+            <?php
 
-if ($created) {
-    echo 'Promotion created';
-} else {
-    echo 'Promotion not created';
-}
+                                    use BusinessLogic\PromotionBL;
+
+            $promotions = PromotionBL::all
+            foreach ($)
+            <li class="flex flex-row justify-between">
+                <div class="text-blue-600">
+                    Promotion 1
+                </div>
+                <a href="" class="text-red-600"> Suprimer </a>
+                <a href="" class="text-green-600"> Modifier </a>
+            </li>
+
+        </ul>
+    </div>
+</body>
+
+</html>

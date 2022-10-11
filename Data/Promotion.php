@@ -6,6 +6,13 @@ require __DIR__ . '/../vendor/autoload.php';
 
 class Promotion {
 
+    public function all()
+    {
+        $query = "SELECT * FROM promotions";
+        $res = mysqli_query(connection(), $query);
+        return (object) mysqli_fetch_assoc($res);
+    }
+
     // Create new promotion
     public function create($title)
     {

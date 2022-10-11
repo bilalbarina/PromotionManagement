@@ -1,0 +1,12 @@
+{
+  "devDependencies": {
+    "autoprefixer": "^10.4.12",
+    "postcss": "^8.4.17",
+    "postcss-cli": "^10.0.0",
+    "postcss-loader": "^7.0.1",
+    "tailwindcss": "^3.1.8"
+  },
+  "scripts": {
+    "watch": "npx tailwindcss -i ./Resources/Dev/css/main.css -o ./Resources/css/main.css --watch"
+  }
+}
