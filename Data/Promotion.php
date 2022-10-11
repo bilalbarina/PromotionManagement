@@ -2,9 +2,6 @@
 
 namespace Data;
 
-use mysqli;
-use stdClass;
-
 require_once __DIR__ . '/../vendor/autoload.php';
 
 class Promotion {
@@ -31,7 +28,7 @@ class Promotion {
         // $promotion->title = $assoc['title'];
         // $promotion->created_at = $assoc['created_at'];
         // return $promotion;
-        
+
         return (object) $assoc;
     }
 }
