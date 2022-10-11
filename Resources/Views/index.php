@@ -2,7 +2,7 @@
 
 namespace Data;
 
-include __DIR__ . '/../../vendor/autoload.php';
+require __DIR__ . '/../../vendor/autoload.php';
 
 $promotionObject = new Promotion();
 $created = $promotionObject->create('test');
