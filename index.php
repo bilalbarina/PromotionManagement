@@ -6,7 +6,7 @@ $page = $_GET['page'] ?? 'index';
 $pagePath = __DIR__ . '/Resources/Views/' . $page . '.php';
 
 if (file_exists($pagePath)) {
-    include  $pagePath;
+    include $pagePath;
     die();
 }
 

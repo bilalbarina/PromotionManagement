@@ -2,6 +2,8 @@
 
 namespace Data;
 
+use stdClass;
+
 require __DIR__ . '/../vendor/autoload.php';
 
 class Promotion {
@@ -10,7 +12,18 @@ class Promotion {
     {
         $query = "SELECT * FROM promotions";
         $res = mysqli_query(connection(), $query);
-        return (object) mysqli_fetch_assoc($res);
+        
+        foreach (mysqli_fetch_assoc($res) as $promotionAssoc) {
+            $promotion = new stdClass();
+            $promotion->id = $promotionAssoc['id'];
+            $promotion->title = $promotionAssoc['title'];
+            $promotion->created_at = $promotionAssoc['created_at'];
+            $promotions[] = $promotion;
+        }
+        
+        var_dump($promotions);
+        die();
+        return $promotions;
     }
 
     // Create new promotion

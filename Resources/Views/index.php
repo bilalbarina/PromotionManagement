@@ -1,3 +1,9 @@
+<?php
+
+use BusinessLogic\PromotionBL;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,19 +28,19 @@
 
         <ul id="promotions" class="mt-8 px-2">
             <?php
+            $promotionBL = new PromotionBL();
+            $promotions = $promotionBL->getAllPromotions();
 
-                                    use BusinessLogic\PromotionBL;
-
-            $promotions = PromotionBL::all
-            foreach ($)
-            <li class="flex flex-row justify-between">
-                <div class="text-blue-600">
-                    Promotion 1
-                </div>
-                <a href="" class="text-red-600"> Suprimer </a>
-                <a href="" class="text-green-600"> Modifier </a>
-            </li>
-
+            foreach ($promotions as $promotion) :
+            ?>
+                <li class="flex flex-row justify-between">
+                    <div class="text-blue-600">
+                        <?= $promotion->title ?>
+                    </div>
+                    <a href="" class="text-red-600"> Suprimer </a>
+                    <a href="" class="text-green-600"> Modifier </a>
+                </li>
+            <?php endforeach ?>
         </ul>
     </div>
 </body>
