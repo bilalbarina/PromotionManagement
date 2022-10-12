@@ -8,21 +8,17 @@ require __DIR__ . '/../vendor/autoload.php';
 
 class Promotion {
 
+    // Get all promotions as an object
     public function all()
     {
+        $promotions = [];
         $query = "SELECT * FROM promotions";
         $res = mysqli_query(connection(), $query);
         
-        foreach (mysqli_fetch_assoc($res) as $promotionAssoc) {
-            $promotion = new stdClass();
-            $promotion->id = $promotionAssoc['id'];
-            $promotion->title = $promotionAssoc['title'];
-            $promotion->created_at = $promotionAssoc['created_at'];
-            $promotions[] = $promotion;
+        while ($promotionAssoc = mysqli_fetch_assoc($res)) {
+            $promotions[] = (object) $promotionAssoc;
         }
-        
-        var_dump($promotions);
-        die();
+
         return $promotions;
     }
 

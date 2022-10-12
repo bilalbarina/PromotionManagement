@@ -46,4 +46,24 @@ class PromotionBL {
 
         return false;
     }
+
+    public function updatePromotion($id, $title)
+    {
+        if ($id <= 0){
+            return false;
+        }
+
+        $this->promotionData->update($id, $title);
+        return true;
+    }
+
+    public function deletePromotion($id)
+    {
+        if ($id <= 0){
+            return false;
+        }
+
+        $this->promotionData->delete($id);
+        return true;
+    }
 }
