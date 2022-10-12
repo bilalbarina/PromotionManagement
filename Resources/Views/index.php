@@ -79,11 +79,12 @@ if (isset($_GET['delete'])) {
         </div>
         <div id="index">
             <div class="flex flex-row justify-between">
-                <button class="py-2 px-6 bg-blue-500 rounded-md text-white" id="ajouter-button">
+                <button class="py-2 px-6 bg-blue-500 rounded-md text-white" id="create-button">
                     Ajouter promotion
                 </button>
-                <div>
-                    <input class="py-2 px-4 border border-blue-500 w-48 rounded-md" placeholder="Chercher promotion">
+                <div class="relative">
+                    <input class="py-2 px-4 border border-blue-500 w-48 rounded-md" placeholder="Chercher promotion" id="search-input">
+                    <div id="search-result" class="absolute border rounded-md p-4 w-full bg-white shadow hidden"></div>
                 </div>
             </div>
 
@@ -115,7 +116,7 @@ if (isset($_GET['delete'])) {
                 <?php endforeach ?>
             </ul>
         </div>
-        <div id="ajouter-form" class="hidden">
+        <div id="create-form" class="hidden">
             <div class="flex flex-col justify-center items-center">
                 <form action="<?= $_SERVER['REQUEST_URI'] ?>" method="post" class="space-y-4">
                     <div>
@@ -132,6 +133,7 @@ if (isset($_GET['delete'])) {
         </div>
     </div>
 
+    <script src="<?= asset('js/jquery.js') ?>"></script>
     <script src="<?= asset('js/main.js') ?>"></script>
 </body>
 

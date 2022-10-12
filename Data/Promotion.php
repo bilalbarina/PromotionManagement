@@ -2,8 +2,6 @@
 
 namespace Data;
 
-use stdClass;
-
 require __DIR__ . '/../vendor/autoload.php';
 
 class Promotion {
@@ -40,15 +38,14 @@ class Promotion {
     public function get($id)
     {
         $query = "SELECT * FROM promotions WHERE id = '$id'";
-        $assoc = mysqli_fetch_assoc(mysqli_query(connection(), $query));
+        return mysqli_query(connection(), $query);
+    }
 
-        // $promotion = new stdClass();
-        // $promotion->id = $assoc['id'];
-        // $promotion->title = $assoc['title'];
-        // $promotion->created_at = $assoc['created_at'];
-        // return $promotion;
-
-        return (object) $assoc;
+    // Search for a promotion
+    public function searchByTitle($title)
+    {
+        $query = "SELECT * FROM promotions WHERE title LIKE '%$title%'";
+        return mysqli_query(connection(), $query);
     }
 
     // Delete a promotion
