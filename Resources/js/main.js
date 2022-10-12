@@ -8,7 +8,7 @@ $("#search-input")
 // .on('focusout', () => $('#search-result').hide())
 .on("input", function () {
   let resultList = $("<ul/>");
-  $.ajax("/?page=search&title=" + this.value, {
+  $.ajax("./?page=search&title=" + this.value, {
     accepts: "json",
     success: (res) => {
       if (res.success) {

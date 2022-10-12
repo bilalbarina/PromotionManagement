@@ -2,5 +2,5 @@
 
 function asset($path = '')
 {
-    return '/Resources/' . $path;
+    return './Resources/' . $path;
 }

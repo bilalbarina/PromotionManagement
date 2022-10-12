@@ -17,7 +17,7 @@ if (isset($_POST['create'])) {
             title: $title
         );
 
-        header('location: ' . URI);
+        header('location: ' . $_SESSION['back']);
         exit();
     }
 }
@@ -38,7 +38,7 @@ if (isset($_POST['edit'])) {
         );
 
         if ($updated) {
-            header('location: ' . URI);
+            header('location: ' . $_SESSION['back']);
             exit();
         }
 
@@ -52,7 +52,7 @@ if (isset($_GET['delete'])) {
     $deleted = $promotionBL->deletePromotion($id);
 
     if ($deleted) {
-        header('location: /?' . http_build_query(['page' => $_GET['page']]));
+        header('location: ./?' . http_build_query(['page' => $_GET['page']]));
         exit();
     }
 
