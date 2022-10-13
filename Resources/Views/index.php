@@ -95,17 +95,17 @@ if (isset($_GET['delete'])) {
                 foreach ($promotions as $promotion) :
                 ?>
                     <li >
-                        <div class="flex flex-row justify-between" id="promo-<?= $promotion->id ?>">
+                        <div class="flex flex-row justify-between" id="promo-<?= $promotion->getId() ?>">
                             <div class="text-blue-600 w-16 whitespace-nowrap">
-                                <?= $promotion->title ?>
+                                <?= $promotion->getTitle() ?>
                             </div>
-                            <a href="<?= URI . '&delete=' . $promotion->id ?>" class="text-red-600"> Suprimer </a>
-                            <button href="" class="text-green-600" onclick="editPromo('<?= $promotion->id ?>')"> Modifier </button>
+                            <a href="<?= URI . '&delete=' . $promotion->getId() ?>" class="text-red-600"> Suprimer </a>
+                            <button href="" class="text-green-600" onclick="editPromo('<?= $promotion->getId() ?>')"> Modifier </button>
                         </div>
-                        <div class="hidden" id="edit-form-<?= $promotion->id ?>">
+                        <div class="hidden" id="edit-form-<?= $promotion->getId() ?>">
                             <form action="<?= URI ?>" method="post" class="flex flex-row justify-between">
-                            <input class="py-1 px-2 border border-blue-700 rounded-md" value="<?= $promotion->id ?>" name="id" type="hidden">
-                                <input class="py-1 px-2 border border-blue-700 rounded-md" value="<?= $promotion->title ?>" name="title">
+                            <input class="py-1 px-2 border border-blue-700 rounded-md" value="<?= $promotion->getId() ?>" name="id" type="hidden">
+                                <input class="py-1 px-2 border border-blue-700 rounded-md" value="<?= $promotion->getTitle() ?>" name="title">
                                 <button type="submit" class="py-2 px-6 bg-blue-500 rounded-md text-white text-xs uppercase font-semibold" name="edit">
                                     Modifier
                                 </button>

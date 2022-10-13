@@ -4,7 +4,8 @@ namespace BusinessLogic;
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use Data\Promotion as PromotionData;
+use Data\Promotion\Promotion;
+use Data\Promotion\PromotionData;
 
 class PromotionBL
 {
@@ -28,16 +29,8 @@ class PromotionBL
             return null;
         }
 
-        $res = $this->promotionData->get($id);
-        $assoc = mysqli_fetch_assoc($res);
-
-        // $promotion = new \stdClass();
-        // $promotion->id = $assoc['id'];
-        // $promotion->title = $assoc['title'];
-        // $promotion->created_at = $assoc['created_at'];
-
-        // return $promotion;
-        return (object) $assoc;
+        return $this->promotionData->get($id);
+        
     }
 
     public function createPromotion($title)
@@ -46,7 +39,11 @@ class PromotionBL
             die('Title is required to create new promotion.');
         }
 
-        $created = $this->promotionData->create($title);
+        $promotion = new Promotion();
+
+        $promotion->setTitle($title);
+
+        $created = $this->promotionData->create($promotion);
 
         if ($created) {
             return true;
@@ -61,7 +58,12 @@ class PromotionBL
             return false;
         }
 
-        $this->promotionData->update($id, $title);
+        $promotion = new Promotion();
+
+        $promotion->setId($id);
+        $promotion->setTitle($title);
+
+        $this->promotionData->update($promotion);
         return true;
     }
 
@@ -77,11 +79,8 @@ class PromotionBL
 
     public function searchByTitle($title)
     {
-        $results = [];
-        $res = $this->promotionData->searchByTitle($title);
-        while ($promotion = mysqli_fetch_assoc($res)) {
-            $results[] = $promotion;
-        }
+        $results = $this->promotionData->searchByTitle($title);
+        
         return $results;
     }
 }
