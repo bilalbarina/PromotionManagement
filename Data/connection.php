@@ -1,10 +1,17 @@
 <?php
 
-function connection() {
-    return mysqli_connect(
-        'localhost',
-        'root',
-        '',
-        'promotion_management'
-    );
+function connection()
+{
+    try {
+        $connection = mysqli_connect(
+            'localhost',
+            'root',
+            null,
+            'promotion_management'
+        );
+    } catch (\Throwable $th) {
+        die('DB Connection Failed.<br>' . $th->getMessage());
+    }
+
+    return $connection;
 }

@@ -29,14 +29,15 @@ class PromotionBL
         }
 
         $res = $this->promotionData->get($id);
+        $assoc = mysqli_fetch_assoc($res);
 
-        // $promotion = new stdClass();
+        // $promotion = new \stdClass();
         // $promotion->id = $assoc['id'];
         // $promotion->title = $assoc['title'];
         // $promotion->created_at = $assoc['created_at'];
-        // return $promotion;
 
-        return (object) mysqli_fetch_assoc($res);
+        // return $promotion;
+        return (object) $assoc;
     }
 
     public function createPromotion($title)

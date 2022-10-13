@@ -6,7 +6,10 @@ use BusinessLogic\PromotionBL;
 // Set content-type to JSON
 header('Content-Type: application/json');
 
-if (isset($_GET['title']) && !empty($_GET['title'])) {
+if (
+    isset($_GET['title'])
+    && !empty($_GET['title'])
+) {
     $promotionBL = new PromotionBL();
     $results = $promotionBL->searchByTitle($_GET['title']);
 
