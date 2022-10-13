@@ -40,11 +40,15 @@ class PromotionData
         $query = "SELECT * FROM promotions WHERE id = '$id'";
         $assoc = mysqli_fetch_assoc(mysqli_query(connection(), $query));
 
-        $promotion = new Promotion();
-        $promotion->id = $assoc['id'];
-        $promotion->title = $assoc['title'];
+        if ($assoc) {
+            $promotion = new Promotion();
+            $promotion->setId($assoc['id']);
+            $promotion->setTitle($assoc['title']);
+            
+            return $promotion;
+        }
         
-        return $promotion;
+        return null;
     }
 
     public function searchByTitle($title)

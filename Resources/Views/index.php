@@ -34,7 +34,8 @@ if (isset($_POST['edit'])) {
         $id = $_POST['id'];
 
         $updated = $promotionBL->updatePromotion(
-            $id, $title
+            $id,
+            $title
         );
 
         if ($updated) {
@@ -90,11 +91,14 @@ if (isset($_GET['delete'])) {
 
             <ul id="promotions" class="mt-12 px-2 space-y-2">
                 <?php
-                $promotions = $promotionBL->getAllPromotions();
-
-                foreach ($promotions as $promotion) :
+                if (isset($_GET['id'])) {
+                    $promotion = $promotionBL->getPromotion($_GET['id']);
+                    if (!$promotion) {
+                        die('Promotion not found');
+                    }
                 ?>
-                    <li >
+
+                    <li>
                         <div class="flex flex-row justify-between" id="promo-<?= $promotion->getId() ?>">
                             <div class="text-blue-600 w-16 whitespace-nowrap">
                                 <?= $promotion->getTitle() ?>
@@ -104,16 +108,39 @@ if (isset($_GET['delete'])) {
                         </div>
                         <div class="hidden" id="edit-form-<?= $promotion->getId() ?>">
                             <form action="<?= URI ?>" method="post" class="flex flex-row justify-between">
-                            <input class="py-1 px-2 border border-blue-700 rounded-md" value="<?= $promotion->getId() ?>" name="id" type="hidden">
+                                <input class="py-1 px-2 border border-blue-700 rounded-md" value="<?= $promotion->getId() ?>" name="id" type="hidden">
                                 <input class="py-1 px-2 border border-blue-700 rounded-md" value="<?= $promotion->getTitle() ?>" name="title">
                                 <button type="submit" class="py-2 px-6 bg-blue-500 rounded-md text-white text-xs uppercase font-semibold" name="edit">
                                     Modifier
                                 </button>
                             </form>
-
                         </div>
                     </li>
-                <?php endforeach ?>
+                    <?php } else {
+                    $promotions = $promotionBL->getAllPromotions();
+
+                    foreach ($promotions as $promotion) :
+                    ?>
+                        <li>
+                            <div class="flex flex-row justify-between" id="promo-<?= $promotion->getId() ?>">
+                                <div class="text-blue-600 w-16 whitespace-nowrap">
+                                    <?= $promotion->getTitle() ?>
+                                </div>
+                                <a href="<?= URI . '&delete=' . $promotion->getId() ?>" class="text-red-600"> Suprimer </a>
+                                <button href="" class="text-green-600" onclick="editPromo('<?= $promotion->getId() ?>')"> Modifier </button>
+                            </div>
+                            <div class="hidden" id="edit-form-<?= $promotion->getId() ?>">
+                                <form action="<?= URI ?>" method="post" class="flex flex-row justify-between">
+                                    <input class="py-1 px-2 border border-blue-700 rounded-md" value="<?= $promotion->getId() ?>" name="id" type="hidden">
+                                    <input class="py-1 px-2 border border-blue-700 rounded-md" value="<?= $promotion->getTitle() ?>" name="title">
+                                    <button type="submit" class="py-2 px-6 bg-blue-500 rounded-md text-white text-xs uppercase font-semibold" name="edit">
+                                        Modifier
+                                    </button>
+                                </form>
+                            </div>
+                        </li>
+                <?php endforeach;
+                } ?>
             </ul>
         </div>
         <div id="create-form" class="hidden">
