@@ -2,6 +2,8 @@
 
 use BusinessLogic\PromotionBL;
 
+// sleep(1);
+
 // Set MIME type to JSON
 header('Content-Type: application/json');
 

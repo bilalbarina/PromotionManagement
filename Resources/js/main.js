@@ -8,7 +8,12 @@ $("#search-input")
   // .on("focusout", () => $("#search-result").hide())
   .on("input", function () {
     let ul = $("<ul/>");
-    $.ajax("./?page=search&title=" + this.value, {
+
+    if (window.searchRequest) {
+      window.searchRequest.abort()
+    }
+    
+    window.searchRequest = $.ajax("./?page=search&title=" + this.value, {
       accepts: "json",
       success: (res) => {
         if (res.success) {
