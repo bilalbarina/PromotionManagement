@@ -3,6 +3,7 @@
 namespace Data\Promotion;
 
 use Data\Promotion\Promotion;
+use mysqli;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
@@ -11,8 +12,8 @@ class PromotionData
     public function all()
     {
         $query = "SELECT * FROM promotions";
-        $res = mysqli_query(connection(), $query);   
-
+        $res = mysqli_query(connection(), $query); 
+        
         return $this->promotions($res);
     }
 
@@ -56,7 +57,7 @@ class PromotionData
         $query = "SELECT * FROM promotions WHERE title LIKE '%$title%'";
         $res = mysqli_query(connection(), $query);
 
-        while ($promotion = mysqli_fetch_assoc($res))
+        while ($promotion = mysqli_fetch_object($res))
         {
             $promotions[] = $promotion;
         }
@@ -75,11 +76,11 @@ class PromotionData
     {
         $promotions = [];
 
-        while ($promotionAssoc = mysqli_fetch_assoc($res)) {
+        while ($promotionAssoc = mysqli_fetch_object($res)) {
             $promotion = new Promotion();
             
-            $promotion->setId($promotionAssoc['id']);
-            $promotion->setTitle($promotionAssoc['title']);
+            $promotion->setId($promotionAssoc->id);
+            $promotion->setTitle($promotionAssoc->title);
 
             $promotions[] = $promotion;
         }
