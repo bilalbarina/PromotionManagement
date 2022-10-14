@@ -3,8 +3,6 @@
 namespace Data\Promotion;
 
 use Data\Promotion\Promotion;
-use mysqli;
-use stdClass;
 
 require_once __DIR__ . '/../../vendor/autoload.php';
 
