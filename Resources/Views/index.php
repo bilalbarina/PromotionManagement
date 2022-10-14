@@ -116,6 +116,11 @@ if (isset($_GET['delete'])) {
                             </form>
                         </div>
                     </li>
+                    <div class="mt-8">
+                        <a type="submit" class="py-1.5 px-6 bg-blue-500 rounded-md text-white text-xs uppercase font-semibold" href="./?page=index">
+                            Retour
+                        </a>
+                    </div>
                     <?php } else {
                     $promotions = $promotionBL->getAllPromotions();
 
@@ -139,15 +144,17 @@ if (isset($_GET['delete'])) {
                                 </form>
                             </div>
                         </li>
-                <?php endforeach;
+                    <?php
+                    endforeach;
+                    if (count($promotions ?? []) < 1) { ?>
+                        <div class="bg-blue-600 text-center text-sm font-semibold">
+                            Aucune promotion disponible
+                        </div>
+                <?php }
                 } ?>
             </ul>
-            <?php
-            if (count($promotions) < 1) { ?>
-                <div class="bg-blue-600 text-center text-sm font-semibold">
-                    Aucune promotion disponible
-                </div>
-            <?php } ?>
+
+
         </div>
         <div id="create-form" class="hidden">
             <div class="flex flex-col justify-center items-center">
