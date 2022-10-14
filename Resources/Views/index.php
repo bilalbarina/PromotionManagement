@@ -147,7 +147,7 @@ if (isset($_GET['delete'])) {
                     <?php
                     endforeach;
                     if (count($promotions ?? []) < 1) { ?>
-                        <div class="bg-blue-600 text-center text-sm font-semibold">
+                        <div class="text-center text-sm font-semibold">
                             Aucune promotion disponible
                         </div>
                 <?php }
