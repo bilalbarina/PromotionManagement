@@ -2,7 +2,7 @@
 
 use BusinessLogic\PromotionBL;
 
-// Set content-type to JSON
+// Set MIME type to JSON
 header('Content-Type: application/json');
 
 if (
@@ -18,7 +18,8 @@ if (
         'results' => $results
     ]);
 
-    die($json);
+    echo $json;
+    exit();
 }
 
 echo json_encode([

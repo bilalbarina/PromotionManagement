@@ -142,6 +142,12 @@ if (isset($_GET['delete'])) {
                 <?php endforeach;
                 } ?>
             </ul>
+            <?php
+            if (count($promotions) < 1) { ?>
+                <div class="bg-blue-600 text-center text-sm font-semibold">
+                    Aucune promotion disponible
+                </div>
+            <?php } ?>
         </div>
         <div id="create-form" class="hidden">
             <div class="flex flex-col justify-center items-center">
