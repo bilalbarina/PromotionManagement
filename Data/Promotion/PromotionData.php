@@ -14,7 +14,18 @@ class PromotionData
         $query = "SELECT * FROM promotions";
         $res = mysqli_query(connection(), $query); 
         
-        return $this->promotions($res);
+        $promotions = [];
+
+        while ($promotionAssoc = mysqli_fetch_object($res)) {
+            $promotion = new Promotion();
+            
+            $promotion->setId($promotionAssoc->id);
+            $promotion->setTitle($promotionAssoc->title);
+
+            $promotions[] = $promotion;
+        }
+
+        return $promotions;
     }
 
     public function create($promotion)
@@ -70,21 +81,5 @@ class PromotionData
     {
         $query = "DELETE FROM promotions WHERE id = '$id'";
         return mysqli_query(connection(), $query);
-    }
-
-    private function promotions($res)
-    {
-        $promotions = [];
-
-        while ($promotionAssoc = mysqli_fetch_object($res)) {
-            $promotion = new Promotion();
-            
-            $promotion->setId($promotionAssoc->id);
-            $promotion->setTitle($promotionAssoc->title);
-
-            $promotions[] = $promotion;
-        }
-
-        return $promotions;
     }
 }
